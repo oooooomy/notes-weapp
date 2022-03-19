@@ -1,0 +1,3 @@
+<view class="empty">
+    {{title}}
+</view>

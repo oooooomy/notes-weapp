@@ -1,0 +1,17 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/list/list",
+        "pages/setting/setting",
+        "pages/add-task/add-task",
+        "pages/create-folder/index",
+        "pages/create-note/index"
+    ],
+    "window": {
+        "backgroundColor": "#1b2021",
+        "backgroundTextStyle": "light",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+    },
+    "sitemapLocation": "sitemap.json"
+}

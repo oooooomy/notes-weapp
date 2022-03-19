@@ -1,0 +1,72 @@
+page {
+    letter-spacing: 1px;
+    background: #1b1b1d;
+}
+
+.van-nav-bar {
+    background: rgba(27, 27, 29, .8) !important;
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.van-nav-bar__title {
+    color: #FFFFFF !important;
+}
+
+.content {
+    padding: 20rpx 36rpx;
+    height: 100%;
+    background: #1b1b1d;
+}
+
+.footer {
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    bottom: 0;
+    background: rgba(27, 27, 29, .8) !important;
+    backdrop-filter: saturate(180%) blur(20px);
+    width: 100%;
+    color: #0066ff;
+}
+
+.footer-left {
+    float: left;
+    font-weight: 500;
+    font-size: 35rpx;
+}
+
+.footer-left-icon {
+    padding-right: 16rpx;
+    transform: translateY(6rpx);
+}
+
+.footer-right {
+    float: right;
+    font-size: 30rpx;
+    transform: translateY(5rpx);
+}
+
+.popup-header {
+    width: 100%;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 31rpx;
+    margin-bottom: 60rpx;
+}
+
+
+.popup-header-left {
+    float: left;
+    color: #0066ff;
+}
+
+.popup-header-title {
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.popup-header-right {
+    font-weight: bold;
+    float: right;
+    color: #0066ff;
+}

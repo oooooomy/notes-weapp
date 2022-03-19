@@ -1,0 +1,15 @@
+<van-nav-bar border="{{false}}" fixed="{{true}}" z-index="9" title="记笔记" bind:click-left="onClickLeft">
+    <view slot="left" style="font-size: 30rpx">
+        <van-icon color="#0066ff" name="arrow-left" />
+        <text style="color:#0066ff;padding-left:5rpx">保存</text>
+    </view>
+</van-nav-bar>
+<scroll-view style="height: 100vh" scroll-y>
+    <view style="{{'width:100%;height:' + headerHeight + 'px'}}" />
+    <view style="padding: 30rpx">
+        <input class="input title" adjust-position="{{false}}" auto-focus maxlength="20" bindinput="bindKeyInput" placeholder="笔记标题" />
+        <van-divider color="#000" hairline="{{true}}" />
+        <editor class="editor" 
+                placeholder="正文内容"/>
+    </view>
+</scroll-view>

@@ -1,0 +1,114 @@
+<van-nav-bar border="{{false}}"
+             fixed="{{true}}"
+             z-index="9"
+             title="添加提醒事项"
+             bind:click-left="onClickLeft">
+    <view slot="left" style="font-size: 32rpx">
+        <van-icon color="#0066ff" name="arrow-left"/>
+        <text style="color:#0066ff;padding-left:5rpx">返回</text>
+    </view>
+</van-nav-bar>
+
+<scroll-view style="height: 100vh" scroll-y>
+    <view style="{{'width:100%;height:' + headerHeight + 'px'}}"/>
+    <view style="padding: 30rpx">
+        <view class="box">
+            <view class="box-content">
+                <input adjust-position="{{false}}"
+                       auto-focus
+                       maxlength="50"
+                       bindinput="bindTitleInput"
+                       placeholder="标题"/>
+                <van-divider borderColor="#424244"/>
+                <input adjust-position="{{false}}"
+                       bindinput="bindDescriptionInput"
+                       maxlength="100"
+                       placeholder="描述"/>
+            </view>
+        </view>
+
+        <view class="box">
+            <view class="box-content">
+                <view bind:tap="onSelectLocation">
+                    <view class="box-item" style="background: #0066ff;">
+                        <van-icon size="35rpx" color="#FFFFFF" name="location"/>
+                    </view>
+                    <text>位置</text>
+                    <view style="float:right;display:flex;">
+                        <view class="address">{{address}}</view>
+                        <van-icon style="padding-left:18rpx;font-weight:900;" color="#606266" name="arrow"/>
+                    </view>
+                </view>
+                <van-divider borderColor="#424244"/>
+                <picker value="{{date}}" bindchange="bindDateChange" start="{{dateFrame.start}}" end="{{dateFrame.end}}"
+                        mode="date">
+                    <view class="box-item" style="background: #ee5253;">
+                        <van-icon size="35rpx" color="#FFFFFF" name="todo-list"/>
+                    </view>
+                    <text>日期</text>
+                    <view style="float:right;">
+                        {{date}}
+                        <van-icon style="padding-left:8rpx;font-weight:900;" color="#606266" name="arrow"/>
+                    </view>
+                </picker>
+                <van-divider borderColor="#424244"/>
+                <picker value="{{time}}" bindchange="bindTimeChange" mode="time">
+                    <view class="box-item" style="background: #5f27cd;">
+                        <van-icon size="35rpx" color="#FFFFFF" name="clock"/>
+                    </view>
+                    <text>时间</text>
+                    <view style="float:right;">{{time}}
+                        <van-icon style="padding-left:8rpx;font-weight:900;" color="#606266" name="arrow"/>
+                    </view>
+                </picker>
+            </view>
+        </view>
+
+        <view class="box">
+            <view class="box-content">
+                <picker mode="selector"
+                        bindchange="bindTaskPickerChange"
+                        value="{{index}}"
+                        range-key="title"
+                        range="{{taskList}}">
+                    <text>列表</text>
+                    <view style="float:right;display:flex;">
+                        <view class="circle" style="{{'background:' + taskList[selectIndex].color}}"/>
+                        <view class="address">{{taskList[selectIndex].title}}</view>
+                        <van-icon style="padding-left:15rpx;font-weight:900;" color="#606266" name="arrow"/>
+                    </view>
+                </picker>
+            </view>
+        </view>
+
+        <view class="box">
+            <view class="box-content">
+                <picker mode="selector"
+                        bindchange="bindGradePickerChange"
+                        value="{{index}}"
+                        range="{{grades}}">
+                    <view class="box-item" style="background: #ff3838;">
+                        <van-icon size="35rpx" color="#FFFFFF" name="volume"/>
+                    </view>
+                    <text>紧急程度</text>
+                    <view style="float:right;">{{selectGrade}}
+                        <van-icon style="padding-left:8rpx;font-weight:900;" color="#606266" name="arrow"/>
+                    </view>
+                </picker>
+                <view wx:if="{{date && time}}">
+                    <van-divider borderColor="#424244"/>
+                    <text>微信通知</text>
+                    <view style="float:right;display:flex;">
+                        <switch bindchange="bindNoticeSwitch" checked style="transform: translateY(-8rpx);"
+                                name="switch"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view bind:tap="onSubmit" class="box" style="margin-top: 70rpx">
+            <view class="box-content submit">确认提交</view>
+        </view>
+
+    </view>
+</scroll-view>

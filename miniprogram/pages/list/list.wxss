@@ -1,0 +1,14 @@
+@import "../../static/css/common.wxss";
+
+.delete {
+    text-decoration: line-through;
+}
+
+.list-title {
+    transform: translateY(-20rpx);
+    font-size: 45rpx;
+    line-height: 66rpx;
+    font-weight: bolder;
+    padding-bottom: 20rpx;
+}
+

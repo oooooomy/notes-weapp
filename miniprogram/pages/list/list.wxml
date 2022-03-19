@@ -1,0 +1,87 @@
+<van-nav-bar border="{{false}}"
+             fixed="{{true}}"
+             bind:click-left="onClickLeft">
+    <view slot="title" style="font-size: 30rpx">
+        <text style="color:#0066ff;padding:0 20rpx">{{task.title}}</text>
+    </view>
+    <view slot="left">
+        <van-icon color="#0066ff" name="arrow-left"/>
+        <text style="color:#0066ff;padding-left:5rpx">返回</text>
+    </view>
+</van-nav-bar>
+
+<empty title="列表里什么都没有" wx:if="{{task.list.length === 0}}"/>
+
+<scroll-view style="height: 100vh" scroll-y>
+    <view style="{{'width:100%;height:' + headerHeight + 'px'}}"/>
+
+    <view style="padding: 30rpx">
+
+        <view wx:if="{{task.list.length !== 0}}" bind:tap="onShowAction" data-index="{{index}}" wx:for="{{task.list}}"
+              wx:key="index" class="box">
+            <view class="box-content">
+                <view class="{{item.complete ? 'box-title delete': 'box-title'}}">
+                    <text>{{item.title}}</text>
+                    <van-tag wx:if="{{item.grade === '低'}}" style="margin-left:25rpx" type="primary">{{item.grade}}
+                    </van-tag>
+                    <van-tag wx:if="{{item.grade === '中'}}" style="margin-left:25rpx" type="warning">{{item.grade}}
+                    </van-tag>
+                    <van-tag wx:if="{{item.grade === '高'}}" style="margin-left:25rpx" type="danger">{{item.grade}}
+                    </van-tag>
+                </view>
+                <van-divider wx:if="{{item.date || item.time || item.description || item.address}}"
+                             borderColor="#424244"/>
+                <view class="box-des" wx:if="{{item.date || item.time}}">
+                    <text class="box-type">时间：</text>{{item.date + ' ' + item.time}}
+                </view>
+                <view class="box-des" wx:if="{{item.description}}">
+                    <text class="box-type">备注：</text>{{item.description}}
+                </view>
+                <view class="box-des" wx:if="{{item.address}}">
+                    <text class="box-type">地点：</text>{{item.address}}
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <view style="{{'width:100%;height:' + footerHeight + 'px'}}"/>
+</scroll-view>
+
+<view class="footer" style="{{'height:' + footerHeight + 'px'}}">
+    <view style="padding: 25rpx 35rpx">
+        <view bind:tap="onAddTask" class="footer-left">
+            <van-icon class="footer-left-icon" color="#0066ff" size="50rpx" name="add"/>添加提醒事项
+        </view>
+    </view>
+</view>
+
+<van-popup round
+           show="{{ showAction }}"
+           position="bottom"
+           custom-style="height: 650rpx;background: rgba(27, 27, 29, .8);backdrop-filter: saturate(180%) blur(20px);"
+           overlay-style="background-color: rgba(0,0,0,.9);"
+           bind:close="onCloseAction">
+    <view style="padding: 40rpx;color: #FFFFFF">
+        <view style="text-align: center;" bind:tap="onCloseAction">
+            <van-icon style="float:left;" size="40rpx" name="cross"/>
+            <view style="transform: translateX(-23rpx);">更多操作</view>
+        </view>
+        <view class="action-title">
+            <text class="box-type">待办事项：</text>
+            {{task.list[selectIndex].title + ' (优先级：' + task.list[selectIndex].grade + ') '}}
+        </view>
+        <view>
+            <van-row gutter="15">
+                <van-col span="12">
+                    <view bind:tap="onComplete" class="success-btn">已完成</view>
+                </van-col>
+                <van-col span="12">
+                    <view bind:tap="onDelete" class="delete-btn">彻底删除</view>
+                </van-col>
+            </van-row>
+        </view>
+        <view bind:tap="onUpdateTask" class="action-footer">
+            <van-icon name="info" style="padding-right: 8rpx"/>详细信息
+        </view>
+    </view>
+</van-popup>

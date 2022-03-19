@@ -1,0 +1,16 @@
+@import "../../static/css/common.wxss";
+
+.van-divider{
+    border: 0 solid #303133!important;
+}
+
+.title{
+    color: #FFFFFF;
+    font-size: 40rpx;
+}
+
+.editor{
+    margin-top: 25rpx;
+    color: #F2F6FC;
+    font-size: 33rpx;
+}

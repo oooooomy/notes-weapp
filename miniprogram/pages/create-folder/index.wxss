@@ -1,0 +1,32 @@
+@import "../../static/css/common.wxss";
+
+.van-grid-item__content {
+    background: transparent !important;
+    padding: 26rpx 16rpx !important;
+}
+
+.submit {
+    text-align: center;
+    color: #0066ff;
+}
+
+.input {
+    margin: 20rpx 0;
+    font-size: 40rpx;
+    font-weight: 900;
+    background: #46454a;
+    height: 110rpx;
+    border-radius: 25rpx;
+    padding: 0 60rpx;
+}
+
+.color-circle {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 100%;
+    border: 10rpx solid #2d2d2f;
+}
+
+.color-circle-click {
+    border: 10rpx solid #ffffff;
+}

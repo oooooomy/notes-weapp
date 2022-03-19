@@ -1,0 +1,26 @@
+@import "../../static/css/common.wxss";
+
+.task-textarea {
+    line-height: 50rpx;
+}
+
+.submit {
+    text-align: center;
+    color: #0066ff;
+}
+
+.address {
+    max-width: 300rpx;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.circle {
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 100%;
+    margin-top: 12rpx;
+    margin-right: 15rpx;
+}

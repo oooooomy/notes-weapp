@@ -1,0 +1,89 @@
+<van-nav-bar border="{{false}}" fixed="{{true}}" z-index="9" bind:click-left="onClickLeft">
+    <view slot="left">
+        <image class="header-content-img" src="../../static/img/home.svg" />
+    </view>
+    <view slot="title">
+        <van-transition show="{{ showTitle }}" custom-class="block">
+            <text class="header-title">{{week}}</text>
+        </van-transition>
+    </view>
+</van-nav-bar>
+<block wx:if="{{showData}}">
+    <empty title="你还没有添加提醒列表" wx:if="{{folders.length === 0}}" />
+</block>
+<scroll-view style="height: 100vh" bindscroll="handleScroll" scroll-y>
+    <view style="{{'width:100%;height:' + headerHeight + 'px'}}" />
+    <view class="content">
+        <view class="title" bind:tap="refreshWord">
+            <view class="title-date">{{week}}</view>
+            <view class="title-des">{{word}} ❤️</view>
+        </view>
+        <block wx:if="{{showData}}">
+            <van-row wx:if="{{folders.length !== 0}}" gutter="10">
+                <van-col span="12" wx:for="{{folders}}" wx:key="index">
+                    <view catch:tap="onClickCard" data-index="{{index}}" class="card" style="{{'background: ' + item.color +';'}}">
+                        <view style="padding: 20rpx;">
+                            <view>
+                                <van-icon size="58rpx" color="#FFFFFF" name="{{item.icon}}" />
+                                <van-icon catch:tap="onShowAction" data-index="{{index}}" style="float: right;" size="52rpx" color="#FFFFFF" name="more" />
+                            </view>
+                            <view class="card-title text-hidden">{{item.title}}</view>
+                            <view class="card-count text-hidden">{{item.count}}篇笔记</view>
+                        </view>
+                    </view>
+                </van-col>
+            </van-row>
+        </block>
+        <view style="{{'width:100vw;height:' + (footerHeight + 30) + 'px'}}" />
+    </view>
+</scroll-view>
+<view class="footer" style="{{'height:' + footerHeight + 'px'}}">
+    <view style="padding: 25rpx 35rpx">
+        <view bind:tap="onAddTask" class="footer-left">
+            <van-icon class="footer-left-icon" color="#0066ff" size="50rpx" name="add" />新增笔记
+        </view>
+        <view bind:tap="onAddList" class="footer-right">新增文件夹</view>
+    </view>
+</view>
+<van-popup show="{{ showSetting }}" close-on-click-overlay="{{true}}" bind:click-overlay="onCloseSetting" position="left" overlay-style="background-color: rgba(0,0,0,.9);" custom-style="height: 100%;width: 65%;background: linear-gradient(to left, #100DD1, #0d3bd1);">
+    <view style="padding: 140rpx 20rpx 20rpx 40rpx">
+        <view bind:tap="onTest" style="width:180rpx;height:180rpx;margin: 20rpx auto;">
+            <van-image round width="180rpx" height="180rpx" fit="cover" src="http://v.bootstrapmb.com/2021/1/teegh9440/img/bg-img/9.jpg" />
+        </view>
+        <view class="popup-username">Aa</view>
+        <view style="height: 60rpx" />
+        <van-cell-group border="{{ false }}">
+            <van-cell border="{{ false }}" is-link icon="setting" title="系统设置" />
+            <van-cell border="{{ false }}" is-link icon="bell" title="消息通知" />
+            <van-cell border="{{ false }}" is-link icon="info" title="功能说明书" />
+            <van-cell border="{{ false }}" is-link icon="wechat-pay" title="打赏作者" />
+            <van-cell border="{{ false }}" is-link icon="share" title="分享给我的朋友" />
+            <van-cell border="{{ false }}" is-link icon="question" title="问题反馈" />
+        </van-cell-group>
+        <view bind:tap="onCloseSetting" class="popup-back">
+            <van-icon custom-style="font-weight: 900;" size="34rpx" color="#FFFFFF" class="popup-back-icon" name="down" />
+        </view>
+    </view>
+</van-popup>
+<van-popup round show="{{ showAction }}" position="bottom" custom-style="height: 500rpx;background: rgba(27, 27, 29, .9);backdrop-filter: saturate(180%) blur(20px);" overlay-style="background-color: rgba(0,0,0,.9);" bind:close="onCloseAction">
+    <view style="padding: 40rpx;color: #FFFFFF">
+        <view style="text-align: center;" bind:tap="onCloseAction">
+            <van-icon style="float:left;" size="40rpx" name="cross" />
+            <view style="transform: translateX(-23rpx);">{{ folders[selectIndex].title }}</view>
+        </view>
+        <view style="margin-top:130rpx">
+            <van-row gutter="15">
+                <van-col span="12">
+                    <view bind:tap="onEditFolder" class="success-btn">编辑信息</view>
+                </van-col>
+                <van-col span="12">
+                    <view bind:tap="onDelete" class="delete-btn">删除列表</view>
+                </van-col>
+            </van-row>
+        </view>
+        <view bind:tap="onUpdateTask" class="action-footer">
+            <van-icon name="info" style="padding-right: 8rpx" />
+            删除后将无法恢复
+        </view>
+    </view>
+</van-popup>

@@ -1,0 +1,52 @@
+<van-nav-bar border="{{false}}"
+             fixed="{{true}}"
+             z-index="9"
+             title="{{isCreate? '新增文件夹' : '编辑文件夹'}}"
+             bind:click-left="onClickLeft">
+    <view slot="left" style="font-size: 32rpx">
+        <van-icon color="#0066ff" name="arrow-left"/>
+        <text style="color:#0066ff;padding-left:5rpx">返回</text>
+    </view>
+</van-nav-bar>
+
+<scroll-view style="height: 100vh" scroll-y>
+    <view style="{{'width:100%;height:' + headerHeight + 'px'}}"/>
+    <view style="padding: 30rpx">
+        <view class="box">
+            <view class="box-content">
+                <input style="{{'color: '+activeColor}}"
+                       adjust-position="{{false}}"
+                       auto-focus
+                       maxlength="20"
+                       value="{{updateFolder.title}}"
+                       bindinput="bindKeyInput"
+                       class="input"
+                       placeholder="列表名称"/>
+                <van-grid border="{{false}}" column-num="6">
+                    <van-grid-item use-slot wx:for="{{ colorArray }}" wx:key="index">
+                        <view bind:tap="onClickSelectColor" data-color="{{item}}"
+                              style="{{'background: '+item+';'}}"
+                              class="{{item === activeColor ? 'color-circle color-circle-click' : 'color-circle'}}"/>
+                    </van-grid-item>
+                </van-grid>
+            </view>
+        </view>
+
+        <view class="box">
+            <view class="box-content">
+                <van-grid border="{{false}}" column-num="6">
+                    <van-grid-item bind:tap="onClickSelectIcon" data-icon="{{item}}"
+                                   icon-color="{{item === activeIcon ? '#0066ff' : '#FBFBFD'}}"
+                                   icon="{{item}}"
+                                   wx:for="{{ iconArray }}"
+                                   wx:key="index"/>
+                </van-grid>
+            </view>
+        </view>
+
+        <view bind:tap="onSubmit" class="box" style="margin-top: 70rpx">
+            <view class="box-content submit">确认提交</view>
+        </view>
+
+    </view>
+</scroll-view>
