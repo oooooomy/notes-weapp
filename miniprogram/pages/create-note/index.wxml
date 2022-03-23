@@ -7,9 +7,11 @@
 <scroll-view style="height: 100vh" scroll-y>
     <view style="{{'width:100%;height:' + headerHeight + 'px'}}" />
     <view style="padding: 30rpx">
-        <input class="input title" adjust-position="{{false}}" auto-focus maxlength="20" bindinput="bindKeyInput" placeholder="笔记标题" />
-        <van-divider color="#000" hairline="{{true}}" />
-        <editor class="editor" 
-                placeholder="正文内容"/>
+        <textarea class="title" confirm-type="next" adjust-position="{{false}}" auto-focus maxlength="20" bindinput="bindKeyInput" placeholder="请输入标题" />
+        <van-divider borderColor="#1989fa" />
+        <textarea class="textarea"
+        	      confirm-type="return"
+                pholder-style="color:#fff;"
+                placeholder="请输入你的正文内容吧"/>
     </view>
 </scroll-view>

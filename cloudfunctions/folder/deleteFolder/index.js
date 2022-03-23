@@ -11,6 +11,8 @@ exports.main = async (event, context) => {
     const folderId = event.folderId
     if (!folderId) throw ('folderId missing')
 
+    console.log(folderId)
+
     db.collection('t_folder').where({
         _id: folderId
     }).remove({

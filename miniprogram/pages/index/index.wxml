@@ -21,7 +21,7 @@
         <block wx:if="{{showData}}">
             <van-row wx:if="{{folders.length !== 0}}" gutter="10">
                 <van-col span="12" wx:for="{{folders}}" wx:key="index">
-                    <view catch:tap="onClickCard" data-index="{{index}}" class="card" style="{{'background: ' + item.color +';'}}">
+                    <view catch:tap="onClickCard" data-id="{{item._id}}" class="card" style="{{'background: ' + item.color +';'}}">
                         <view style="padding: 20rpx;">
                             <view>
                                 <van-icon size="58rpx" color="#FFFFFF" name="{{item.icon}}" />

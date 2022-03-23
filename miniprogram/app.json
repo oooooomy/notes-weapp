@@ -1,11 +1,11 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/list/list",
         "pages/setting/setting",
         "pages/add-task/add-task",
         "pages/create-folder/index",
-        "pages/create-note/index"
+        "pages/create-note/index",
+        "pages/folder-list/index"
     ],
     "window": {
         "backgroundColor": "#1b2021",

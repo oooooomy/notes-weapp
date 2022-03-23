@@ -58,13 +58,14 @@ Page({
     },
 
     /**
-     *点击列表卡片
+     *点击文件夹卡片
      * @param e
      */
     onClickCard(e) {
-        const index = e.currentTarget.dataset.index
+        const folderId = e.currentTarget.dataset.id
+        console.log('folder id : ', folderId)
         wx.navigateTo({
-            url: '/pages/list/list?index=' + index
+            url: '/pages/folder-list/index?folderId=' + folderId
         })
     },
 

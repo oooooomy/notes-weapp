@@ -50,7 +50,7 @@
 <view class="footer" style="{{'height:' + footerHeight + 'px'}}">
     <view style="padding: 25rpx 35rpx">
         <view bind:tap="onAddTask" class="footer-left">
-            <van-icon class="footer-left-icon" color="#0066ff" size="50rpx" name="add"/>添加提醒事项
+            <van-icon class="footer-left-icon" color="#0066ff" size="50rpx" name="add"/>新建笔记
         </view>
     </view>
 </view>

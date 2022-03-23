@@ -7,16 +7,23 @@ Page({
         footerHeight: App.globalData.footerHeight,
         contentHeight: App.globalData.contentHeight,
         showAction: false,
+        folderId: '',
         selectIndex: 0,
         taskIndex: 0,
         task: {},
     },
 
     onLoad: function (options) {
-        const index = parseInt(options.index)
+        const folderId = options.folderId
+        if (!folderId) {
+            wx.showToast({
+                title: '参数缺失',
+                icon: 'error',
+                duration: 2000
+            })
+        }
         this.setData({
-            taskIndex: index,
-            task: wx.getStorageSync("taskList")[index]
+            folderId: folderId,
         })
     },
 
@@ -25,7 +32,7 @@ Page({
      */
     onAddTask() {
         wx.redirectTo({
-            url: '/pages/add-task/add-task?index=' + this.data.taskIndex
+            url: '/pages/create-note/index?folderId=' + this.data.folderId
         })
     },
 
